@@ -1,0 +1,16 @@
+In Document 4 types of entities -
+1. Missing entity or doc - Entity present in prior year bt not in current year
+2. Received entity or doc - Entity present in prior year and also in current year
+3. New entity or doc - Entity not there in prior year bt created in current year - (Source - User or OCR from doc)
+4. NA entity or doc - Entity present in prior year bt not available or discarded in current year - Mark Inactive
+
+Case 1 - missing entity
+1. Create tax client for 2021 - (Tax payer info, profoma details like income) - HS41099(4723_HS)
+2. Create tax client for 2022 - (Tax payer info) - HS41099(4723_HS)
+3. Create binder for 2022 - Demodoc 2021 - Classic Leadsheet - SCAN PRO - GO
+4. Complete verification process
+5. Appear in RD check RD
+
+1) In verification step we need to mark tax year as Prior year.
+2) In Index tree also there is one provision for Prior year.
+

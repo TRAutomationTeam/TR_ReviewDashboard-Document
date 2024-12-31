@@ -1,0 +1,408 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Navigate_to_Documents___Get_Counts" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ucat="clr-namespace:UiPath.Core.Activities.TextModifications;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strURL_Dashboard" Type="InArgument(x:String)" />
+    <x:Property Name="out_intMissingDocCount" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_intReceivedDocCount" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_intNewDocCount" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_intNADocCount" Type="OutArgument(x:Int32)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1313.3333333333333,1937.3333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Navigate_to_Documents___Get_Counts_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Drawing.Imaging</x:String>
+      <x:String>UiPath.Core.Activities.TextModifications</x:String>
+      <x:String>UiPath.Activities.System.Workflow.Business</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Navigate_to_Documents___Get_Counts" sap:VirtualizedContainerService.HintSize="608,1872.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Reviewer Dashboard" sap:VirtualizedContainerService.HintSize="546,1626" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="512,1406.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strMissingDocCount" />
+              <Variable x:TypeArguments="sd:Image" Name="Image" />
+              <Variable x:TypeArguments="x:String" Name="strReceivedDocCount" />
+              <Variable x:TypeArguments="x:String" Name="strNewDocCount" />
+              <Variable x:TypeArguments="x:String" Name="strNADocCount" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Documents'" sap:VirtualizedContainerService.HintSize="450,159.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://reviewerdashboard.sureprep.com/v2/dashboard/2022/26239189/0" CvElementArea="140, 358, 324, 75" CvTextArea="191, 378, 78, 12" CvTextArgument="DOCUMENTS" CvType="Button" DesignTimeRectangle="192, 376, 136, 17" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Documents'" FullSelectorArgument="&lt;webctrl aaname='Documents' parentid='test-documents-link' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Documents' parentid='test-documents-link' tag='DIV' type='' class='_3nzfF' check:innerText='DOCUMENTS' /&gt;" Guid="158a9de8-4b28-4309-bdfb-246f1c8ece02" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIwAAAAVCAYAAACUqQa1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHWSURBVGhD7ZbbjewgDEDTIWVRCqWklJTB8rDBdkwS737cK+EjIc3wMMQ+YebIjmPAhXFMuDCOCRfGMeHCOCZcGMcEEebM8TjywVrI6YJhwpWCmBfLasmVU6BzjhxaMNgnpDIDwbkzzhlxnYw9z9njaeeZY6s4vb/23c85WoQVZxRj2vPuwV2YVkieRMxbRStObzSJmnwYxyoM358WTwrD5gE0Ds6vfBbmSjlo/ZuyEAbAZI0+FIG/YVgwWUBaoIlFmJBD7ScFav0xthjfhYE45MacwkzUOCCo/iz78SzMKCQkGgWSlRFiYZH0HFuEiTnVIgphQxGm7ieFoQ2POMTAmwkGPgtDbhj52DvyIgwmFoovkj6ha+/F59iE6YWm+5fPZy+iSZixR4/1WZgKPndrqxdhD/77G+aE+VWO1lfXwX7ff5IgLjm/SRhgisnX7cQ/+A+j3UBPwsDnUP6HYMzfCjO+l7Ul3uo5VsJU+vp9b5m7MEqjCZxvmWw0+XosjLOMQTZihR4/Cfymk8LQhmNSGFzb570Lo5+Vr9uJF2EWiWG/6at593iPhaCDBVZoedP9RZjCnK/3PwuzyMkmEGEc5x0XxjHhwjgmXBjHhAvjmHBhHAM5/wBamjhf02sHdQAAAABJRU5ErkJggg==" InformativeScreenshot="dff264c48f54744722a98109275225d8.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvElementArea="140, 358, 324, 75" CvTextArea="191, 400, 138, 17" CvTextArgument="Missing Documents" CvType="Button" DesignTimeRectangle="192, 398, 136, 19" ElementType="Text" FriendlyName="'Missing Documents'" FullSelectorArgument="&lt;webctrl aaname='Missing Documents' parentid='test-documents-link' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Missing Documents' parentid='test-documents-link' tag='DIV' type='' class='_1wfd8' check:innerText='Missing Documents' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,96" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Getting Countes for Missing, Received, New &amp; NA Documents or Entity&quot;]" />
+            <Sequence sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '4 RECEIVED'" sap:VirtualizedContainerService.HintSize="388,159.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable Accuracy="0.62" BrowserURL="https://reviewerdashboard.sureprep.com/v2/dashboard/2022/26239140/0/documents/missing-documents" CvElementArea="604, 304, 93, 39" CvTextArea="618, 317, 66, 12" CvTextArgument="4 RECEIVED" CvType="Button" DesignTimeRectangle="619, 315, 64, 17" DesignTimeScaleFactor="1" FriendlyName="'4 RECEIVED'" FullSelectorArgument="&lt;webctrl aaname=' 4 RECEIVED' parentid='test-document-tabs' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' * RECEIVED' parentid='test-document-tabs' tag='SPAN' type='' class='_262in' /&gt;" Guid="00e4981c-0ccf-429a-b5ec-7470f31f3911" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEQAAAAVCAYAAAD/wUjgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGKSURBVFhH7ZU9DsIwDIW5Sk/Wu3AMDsDC2COwV2JCiJENIa5g4jQJ9stPW9QNPylD49g8f/lhRyYlAwIyICADAjIgIAMCqgIZh5G64RG+tJ7nC3UHF0/jSmOI0e0KsZH68zsEWQ/aF+P5fHe805NTuKb3wmvEb0W97tT7tW86HaFGWt+oL1QG4gz0A486ENUkG87MlzSZ2t/Cp1KlWZaoyRuF+V8/DORCp9c0r1Woz3VhrgAkJDYay4DwDsXCjTxuRp8WqWVA8voSwkogTugpA5J2YA2QpuGollnWQiC4Ll0X1nog6FcDWdRY4Q2R6zhPxg7RIBuaAyLzxM6BF3lt9A4zEF3jm1cBooAqIJAwAySa8HAQSDFvqxPilL4R8pYnhAOSbBp5EX1lwFQVyEZviFdYC7v7C5DZNySp0dhvb4iTf3xX7iCrUNM34prXgNcBma6+ntsGSLi76TGGU6bXsjEZjw3gvButv3L/Owhw8qFqpDWF+oX+6kD+VAYEZEBABgRkQEAGRInoAz4UREKUW8txAAAAAElFTkSuQmCC" InformativeScreenshot="576febd06f54e23524c207a9ce0148da.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'A  /v2/dashboard/2022/2...'" sap:VirtualizedContainerService.HintSize="388,172.66666666666666" sap2010:WorkflowViewState.IdRef="GetOCRText_2">
+                <ui:GetOCRText.OCREngine>
+                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                    <ActivityFunc.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                    </ActivityFunc.Argument>
+                    <p:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Screen OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,25.333333333333332" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_1" Image="[Image]" Language="auto" Profile="Screen" Scale="1" Timeout="100000" />
+                  </ActivityFunc>
+                </ui:GetOCRText.OCREngine>
+                <ui:GetOCRText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35784686-1339-473c-bbf2-92a576bd58d5" InformativeScreenshot="c98535b684fe58328193ded4d1f6c892" Selector="&lt;webctrl aria-role='tab' aaname=' * MISSING' tag='A' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:GetOCRText.Target>
+                <ui:GetOCRText.Text>
+                  <OutArgument x:TypeArguments="x:String">[strMissingDocCount]</OutArgument>
+                </ui:GetOCRText.Text>
+              </ui:GetOCRText>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '4 MISSING'" sap:VirtualizedContainerService.HintSize="388,159.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable Accuracy="0.5" BrowserURL="https://reviewerdashboard.sureprep.com/v2/dashboard/2022/26239140/0/documents/received-documents" CvElementArea="512, 304, 94, 38" CvTextArea="529, 317, 60, 12" CvTextArgument="4 MISSING" CvType="Button" DesignTimeRectangle="513, 305, 105, 36" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'4 MISSING'" FullSelectorArgument="&lt;webctrl aria-role='tab' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='tab' tag='A' type='' class='MuiButtonBase-root rmBt0 _2-KJp _3wzJ5 _2nDgf' aaname=' * MISSING' /&gt;" Guid="0bcfca26-d01a-4a39-b6a0-4e3f4d5c701b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGEAAAAoCAYAAADuUZQHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJQSURBVGhD7ZuxTsMwEED5FX4FfgKm/Es/ox9QCXUsG2P3SB1QVWVBaqeqKhIsMJm7i+2cHbsNKEmv6J50UuLaZ/tenE65McrFUQkC8BJ2n9/m/unV3E5LjRHi4bny117CHQh4eXu3d8rQcCFeAt4o46ESBKASBKASBKASBKASBKASBKASBKASBKASBKASBKASBDCahHIBkyy29i5kv1zBnCszP9gGBo2brk29oqOZz3i/rZmwDQQ5NmvWDjGrzN61+3XU44vl0d5bDpUp4rViG8+HkdnPb+E5h5MAGy8WGHkJBRS3VQwsErYnJeB1aSYb+iGECubGRMQSgvyWWAIJzeTrgREk4NMGGwg2H0ISlhUUxD6tFt+elIB506eHihbl8rQkVKbEk8jXFkiIT1//DC4BXyf0tJ6VcGz6Em7zVmLQRjf1qypZbByTeM0gsQTKHZ0qLgGvc0J7YlgJfMMdJAR9fCHyEggcQxtwfRrq/xMIPm9SAoDz8WvXB/tzCdTP5u1JTr3+OnqWwIsHdJHAxmBb/WSekeCg4qR/w1z5P+ZmjSiN1sEl4HWq2Ln2PzCcBP+ExsHEWBoJ7vWFxXb9OkoAwtcZh+U4IaG+h/wbJsG1xXNehYSYTicBcPKShTolIVMsBHN2OAlEa357kuJ+/1pC/CeZlYDtzeIx/BhXSB+sgOck2Plba23lhLg6CUoWlSAAlSAAlSAAlSAAlSAAlSAAlSAAlSAAlSAAlSCApAT8Skc/EhmPpITdxxd9rcN/1BguHlOfSymXQyVcHGN+ACt5sNW1025KAAAAAElFTkSuQmCC" InformativeScreenshot="c64bead428c8824da3feab95d0aacb20.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'A  /v2/dashboard/2022/2...'" sap:VirtualizedContainerService.HintSize="388,172.66666666666666" sap2010:WorkflowViewState.IdRef="GetOCRText_3">
+                <ui:GetOCRText.OCREngine>
+                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                    <ActivityFunc.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                    </ActivityFunc.Argument>
+                    <p:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Screen OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,25.333333333333332" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_2" Image="[Image]" Language="auto" Profile="Screen" Scale="1" Timeout="100000" />
+                  </ActivityFunc>
+                </ui:GetOCRText.OCREngine>
+                <ui:GetOCRText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35784686-1339-473c-bbf2-92a576bd58d5" InformativeScreenshot="f5ad9cb315cddfae4b44477fd572ab4a" Selector="&lt;webctrl aaname=' * RECEIVED' aria-role='tab' tag='A' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:GetOCRText.Target>
+                <ui:GetOCRText.Text>
+                  <OutArgument x:TypeArguments="x:String">[strReceivedDocCount]</OutArgument>
+                </ui:GetOCRText.Text>
+              </ui:GetOCRText>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="388,54" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,283.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'A  /v2/dashboard/2022/2...'" sap:VirtualizedContainerService.HintSize="388,172.66666666666666" sap2010:WorkflowViewState.IdRef="GetOCRText_4">
+                      <ui:GetOCRText.OCREngine>
+                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                          <ActivityFunc.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                          </ActivityFunc.Argument>
+                          <p:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Screen OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,25.333333333333332" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_3" Image="[Image]" Language="auto" Profile="Screen" Scale="1" Timeout="100000" />
+                        </ActivityFunc>
+                      </ui:GetOCRText.OCREngine>
+                      <ui:GetOCRText.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35784686-1339-473c-bbf2-92a576bd58d5" InformativeScreenshot="c80f9c75217fe32dea2a0ee1de789e86" Selector="&lt;webctrl aaname=' * NEW' aria-role='tab' tag='A' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetOCRText.Target>
+                      <ui:GetOCRText.Text>
+                        <OutArgument x:TypeArguments="x:String">[strNewDocCount]</OutArgument>
+                      </ui:GetOCRText.Text>
+                    </ui:GetOCRText>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <uix:NGetAttributeGeneric x:TypeArguments="x:String" Attribute="aaname" DisplayName="Get Attribute '7 NEW'" sap:VirtualizedContainerService.HintSize="388,211.33333333333334" sap2010:WorkflowViewState.IdRef="NGetAttributeGeneric`1_1" Result="[strNewDocCount]" ScopeIdentifier="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V3">
+                <uix:NGetAttributeGeneric.Target>
+                  <uix:TargetAnchorable BrowserURL="https://reviewerdashboard.sureprep.com/v2/dashboard/2022/26778789/0/documents/missing-documents" CvElementArea="684, 260, 115, 36" CvTextArea="714, 271, 60, 13" CvTextArgument="* 7 NEW" CvType="Button" DesignTimeRectangle="686, 261, 113, 34" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'7 NEW'" FullSelectorArgument="&lt;webctrl aaname=' 7 NEW' aria-role='tab' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='*NEW' aria-role='tab' tag='A' type='' class='MuiButtonBase-root bRRjP ThR6d css-1b47e06' /&gt;" Guid="e6e12389-bb06-44d2-b35b-589950c433b8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHUAAAAmCAYAAAD6HtTlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO/SURBVHhe7ZjLaxNBGMD7r6iHqqig4EkvggpeBL14EOzJi+DBg+DBB/TqWRTfIhZpRQuxQhVrtbWiQtpo26TG2kfaEmqatkmbmL4+55ud2Z3ZTrIrNrtxnB98sDuP3WV+8+3OTh0YtMNI1ZC6TTejYEKvoJmKB4Z/G9GhkaoJRqqGGKkaYqRqiJGqIUaqhtSs1NLKGvRnChCfKUJpdY2VGvxQU1KJR2hOZOBE5BtsJs+Bz4Kx5VYUTj5PwrNkFoxeb2pG6vfZIhxsHrRFloujTxMwtbDEehlU4DhxQpManynAznt9kjyM/U39NNzlex7EYCxXYr0NbnCMOKFIXVhahX2PvkrSeNzoS8N1Eqq6QySrl8y3VgmODycUqVfepyRZPLbe6YX50grM/VqB+tu9yjbXetPsKmqmu2LKfo1DrIFNFlqaSF0kxc45KWhsSsI0PWZtpGvFIUrLY9CSoY0shuKszoE+y7rrVwd8Nk7gUnFhtI3IkwfKigvvxlgrgPOdo8o2Bx4PsBZ+IZJcg21hiWlwy1kn1V1vEY1EoaEry86sc3w+cfJg2frJVB3w3pzApfZNL9qCjrUmYJD8wkzkS5Ajr2Q3OZK1WIdtsC3vl170v2jCbBEH3wGFEdmYYbZExJ9Umpl2FjrXcu6Fk6lM3yogOgxc6svROVsOxun2Yfp/Wg6swzZin+6JHKv1ooIUoU7OOp9SM0mS5awdP1aV4XEA4LhwApfaMT4vCcI43jpEs9LNLPm2Yp27fSe5hi+kbHIjChOzyi1VvrecnVYf520gXLPivTcefDZO4FIHyKtUGiQWbxSiVBMAI5EtshaVsISU/6aJUsVFjc9MJfBvZjQiXwcFB/k9RXBcOKEslHaTf05REu4k5RXfVCwT22HsffjF3w6T5+vPLYxPAv9SrWyMywsxWpYk/VSLs+qBY8MJXCrS2CP/0hx5MkjLcYfp1IskDTxGDrfIO05XP03Sci+8M0UhDCcC3sevVN5ees3ipMBVdaUJtfHg2HBCkfqzsAzb7zq7SWdfj8Cl7nFp7xePL5OyM69+2GW77sfoP6wndLC9MkUtDCeDLNV5JivE61r17tW1vPAKBnw2TihSkfYReRXsFSi5ZzLPehvc4BhxQpOKtA3PQn2ZjQgxcI/4bcrnivc/BceJE6pUJJUrwbmOEeW24A4i82LXOH1dGyojOgxdKqewvAofp/LwgcXn9ILZvP8DalKq4e8wUjXESNUQI1VDjFQNMVI1xEjVEEkqnpjQK2imGvTCSNUOgN8iDw+YGTEquQAAAABJRU5ErkJggg==" InformativeScreenshot="a3432b2917d8a6819fe56e3c960c7042.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CvTextArgument="DOCUMENTS" CvType="Text" DesignTimeRectangle="610, 202, 111, 22" ElementType="Text" FriendlyName="'DOCUMENTS'" FullSelectorArgument="&lt;webctrl aaname='DOCUMENTS' parentid='app-container' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='DOCUMENTS' parentid='app-container' tag='SPAN' type='' class='ijCsR _swXJ' check:innerText='DOCUMENTS' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHMAAAAaCAYAAACEuGN0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASJSURBVGhD7VjPSxtBFO7/0lNu3nrz1ps3bz3lVKEHc0kPgl7ModBbDkHIQSU0sKAVQgIBMRApipEQwRIIVAM2hUBCISJKDMLXNzNvNrObzY9mFdplP3iHffPm1/tmvpnZVwgRGIRkBgghmQFCSGaAEJIZIIRkBgghmQGCk8x2GdH3u3ht2ocM3n0qIt/ocZAXHtG5KCOxmcEbR71DnHUfOcYLVO/8EKsbGSxwvYWYhdV0GbXuE8cAtRS3uVFGh30adlnqkj0KnaKl/MLiJVyxf4jfyG9yuUd9z1ywJS44RsARt4dDd5ouCqrMHLv2TTBHH90qtozcRii3KylnjgSmk2nYUvoSfQ4d4g61dBYRj3hlGRrYHceaoHqpjEe8sCyyPzmM4JvM9xb221yg0TvFql0+Wn8+MnexSO04cuSXzPa3seNYP3/gIIUxZBqTH/xC7Ytlk7Va/s0FCn0a2CKXvU1W0LoXO/EJ/XYVn9d0xwc4vlfxGv2TA7vNqNXA7UB4H9C5rmD7SxW3MkrBD5m6j5Uj57hvy3vSvxjjBTWWTI+FYGKEdFqI18aO8SLTxJR+Wl95UcZyOOuJdh/R7zZxbJ2OqM10MiXucJwUfjKHZD0M/bEi6uy18bOEZdmeexG0sb/B9Ta/OYjzgh8yo8mcGsOnU6MfPW4LiRQnyy+ZGwUkeE4Rsy+fZNrzmyFPM5KpdpJslMryXXYSfZ+lj1b4ToN9Jn5hX+9OM1mGxK2fOKXCC77ILFaQjYsYUge5+wmDCta5vZqWY99kltFqFPFW1hFHC8/LJ5laQYQtpyu4krvTGzOTOdR5ISPswyUS3FG06DVjY+eak7H7cZ0/Y+CHzEi6jvqOktLEhUpE/zwn5XfZuhlb3xyj0wqocYiEjlsjMk0FW2MF80mm2BCOixotlOhOFR29MA3MQaZZ9u+TKf00dkFeRMY8cR21KJ+NTO036smj5bqEJfE9N5kCPdSLdFx8UO0Ki8SpP9c9ZGYyh9vdvH43sBVTjf+VzHaHN7SXllnpH1SVrMpznRcgn/3TyZyUZIKbTFosWglkf7rcF5mMQZsuo3v2M04oi4kZyTTeZCQfLfaKnXc21wWoyecYrbBk1eO548SVlVV9jLwXjYvUJDJthchi+2tR3r714nt+Mgn3fCaTRVOF5yNTwlA715ink9lrIp/S70g62M9db0b70J/0NKFrtUvjW5ogavNjUT9NqN79DepHl8aCIXxXBMjkGM+Y1knO7tv95nKSOVQWPY8tFpIXIZPmYS9AbXOR2UY+eYDtkyY6Mq+EHikLq+GS1VQ+xhgyvW3F+uH506C+M89PA5Jgx8FumpkYgUk/GHaxQNd2d6LcZDrmZqjIdDJHzfungWvMg2HSpc1Jpq08I0avClf8VDLlr6NkCWftSWfbEzrf5/md10HNyuGdMWn1O49uaxwxBF0CjgpYiWfshfMmvofE0Q/P99cImbhBlpVCXYQUXoxMglADe5HPRaZQnxLWPfM6+kRxkhniv0ZIZoAQkhkghGQGCCGZAUJIZoAQkhkYAH8AmQeaOHLrvqAAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetAttributeGeneric.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NGetAttributeGeneric>
+              <uix:NGetAttributeGeneric x:TypeArguments="x:String" Attribute="visibleInnerText" DisplayName="Get Attribute '1 N/A'" sap:VirtualizedContainerService.HintSize="388,211.33333333333334" sap2010:WorkflowViewState.IdRef="NGetAttributeGeneric`1_2" Result="[strNADocCount]" ScopeIdentifier="92069d2f-e7be-480b-8f58-45d172507f3d" Version="V3">
+                <uix:NGetAttributeGeneric.Target>
+                  <uix:TargetAnchorable BrowserURL="https://reviewerdashboard.sureprep.com/v2/dashboard/2022/26239140/0/documents/missing-documents" CvElementArea="789, 310, 93, 38" CvTextArea="819, 323, 32, 12" CvTextArgument="1 N/A" CvType="Button" DesignTimeRectangle="790, 311, 92, 36" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'1 N/A'" FullSelectorArgument="&lt;webctrl aaname=' * N/A' aria-role='tab' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' * N/A' aria-role='tab' tag='A' type='' class='MuiButtonBase-root rmBt0 _380b- uXAZg _2nDgf' /&gt;" Guid="5e8777cc-c190-4318-956d-cb1be9015152" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGAAAAAoCAYAAAABk/85AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGISURBVGhD7ZtBasMwEEVzlVylF/FdcowewFCydG/gvcCLEkLoyrsQUuiuq6lGHhNZUkhX/nb6HwgiRxJm3sw4ELwRAoUCwGy2r0445hsvbx/y/vll4bcK0C/IPPTfP0HCCAUAiONNAQAoAAwFgKEAMBQAhgLAUAAYCgBDAWAoAAwFgFmggF52/h62TW/zAseDv89O9hebG+e2k93RJiO6dnLWVfa1k6q92hzLsgSEwB7EXU5SPRBQ1V0mqSTANYkoPdvvreqTnO0SkgVWgOcvAto+ZHIc8FyAr6Yk0MMarYK8ghCsVkDIfl2nFWOXUwE6n7YabW+2PkjEt6F1C/BokOPPNwGFLI/2laoDweoFDFk9BHoiQM9IAuya/G/BacuanzjeKxXg0bkPtosEFNtPmvHpOQCeQ4BnzO5BQN5+ciFK9EwA8TQCwp5RQNZ+7v/qUXHINrRMAf8ICgBDAWAoAAwFgKEAMBQAhgLAUAAYCgBDAWAoAMzkBQ0NPsd8o/iKEsFBAVBEfgEPYftttBf3rgAAAABJRU5ErkJggg==" InformativeScreenshot="5e082a1fe98c83193c3822e3705e2d99.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target Accuracy="0.93" CvTextArgument="DOCUMENTS" CvType="Text" DesignTimeRectangle="624, 247, 111, 22" ElementType="Text" FriendlyName="'DOCUMENTS'" FullSelectorArgument="&lt;webctrl aaname='DOCUMENTS' parentid='app-container' tag='SPAN' /&gt;" FuzzyAccuracy="0.88" FuzzySelectorArgument="&lt;webctrl aaname='DOCUMENTS' parentid='app-container' tag='SPAN' type='' class='_182DN _1IVHW' check:innerText='DOCUMENTS' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHMAAAAaCAYAAACEuGN0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASJSURBVGhD7VjPSxtBFO7/0lNu3nrz1ps3bz3lVKEHc0kPgl7ModBbDkHIQSU0sKAVQgIBMRApipEQwRIIVAM2hUBCISJKDMLXNzNvNrObzY9mFdplP3iHffPm1/tmvpnZVwgRGIRkBgghmQFCSGaAEJIZIIRkBgghmQGCk8x2GdH3u3ht2ocM3n0qIt/ocZAXHtG5KCOxmcEbR71DnHUfOcYLVO/8EKsbGSxwvYWYhdV0GbXuE8cAtRS3uVFGh30adlnqkj0KnaKl/MLiJVyxf4jfyG9yuUd9z1ywJS44RsARt4dDd5ouCqrMHLv2TTBHH90qtozcRii3KylnjgSmk2nYUvoSfQ4d4g61dBYRj3hlGRrYHceaoHqpjEe8sCyyPzmM4JvM9xb221yg0TvFql0+Wn8+MnexSO04cuSXzPa3seNYP3/gIIUxZBqTH/xC7Ytlk7Va/s0FCn0a2CKXvU1W0LoXO/EJ/XYVn9d0xwc4vlfxGv2TA7vNqNXA7UB4H9C5rmD7SxW3MkrBD5m6j5Uj57hvy3vSvxjjBTWWTI+FYGKEdFqI18aO8SLTxJR+Wl95UcZyOOuJdh/R7zZxbJ2OqM10MiXucJwUfjKHZD0M/bEi6uy18bOEZdmeexG0sb/B9Ta/OYjzgh8yo8mcGsOnU6MfPW4LiRQnyy+ZGwUkeE4Rsy+fZNrzmyFPM5KpdpJslMryXXYSfZ+lj1b4ToN9Jn5hX+9OM1mGxK2fOKXCC77ILFaQjYsYUge5+wmDCta5vZqWY99kltFqFPFW1hFHC8/LJ5laQYQtpyu4krvTGzOTOdR5ISPswyUS3FG06DVjY+eak7H7cZ0/Y+CHzEi6jvqOktLEhUpE/zwn5XfZuhlb3xyj0wqocYiEjlsjMk0FW2MF80mm2BCOixotlOhOFR29MA3MQaZZ9u+TKf00dkFeRMY8cR21KJ+NTO036smj5bqEJfE9N5kCPdSLdFx8UO0Ki8SpP9c9ZGYyh9vdvH43sBVTjf+VzHaHN7SXllnpH1SVrMpznRcgn/3TyZyUZIKbTFosWglkf7rcF5mMQZsuo3v2M04oi4kZyTTeZCQfLfaKnXc21wWoyecYrbBk1eO548SVlVV9jLwXjYvUJDJthchi+2tR3r714nt+Mgn3fCaTRVOF5yNTwlA715ink9lrIp/S70g62M9db0b70J/0NKFrtUvjW5ogavNjUT9NqN79DepHl8aCIXxXBMjkGM+Y1knO7tv95nKSOVQWPY8tFpIXIZPmYS9AbXOR2UY+eYDtkyY6Mq+EHikLq+GS1VQ+xhgyvW3F+uH506C+M89PA5Jgx8FumpkYgUk/GHaxQNd2d6LcZDrmZqjIdDJHzfungWvMg2HSpc1Jpq08I0avClf8VDLlr6NkCWftSWfbEzrf5/md10HNyuGdMWn1O49uaxwxBF0CjgpYiWfshfMmvofE0Q/P99cImbhBlpVCXYQUXoxMglADe5HPRaZQnxLWPfM6+kRxkhniv0ZIZoAQkhkghGQGCCGZAUJIZoAQkhkYAH8AmQeaOHLrvqAAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetAttributeGeneric.Target>
+              </uix:NGetAttributeGeneric>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="388,54" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,283.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'A  /v2/dashboard/2022/2...'" sap:VirtualizedContainerService.HintSize="388,172.66666666666666" sap2010:WorkflowViewState.IdRef="GetOCRText_5">
+                      <ui:GetOCRText.OCREngine>
+                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                          <ActivityFunc.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                          </ActivityFunc.Argument>
+                          <p:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Screen OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,25.333333333333332" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_4" Image="[Image]" Language="auto" Profile="Screen" Scale="1" Timeout="100000" />
+                        </ActivityFunc>
+                      </ui:GetOCRText.OCREngine>
+                      <ui:GetOCRText.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35784686-1339-473c-bbf2-92a576bd58d5" InformativeScreenshot="d7d23eb89879d3400fd49beb4123ad15" Selector="&lt;webctrl aaname=' * N/A' aria-role='tab' tag='A' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetOCRText.Target>
+                      <ui:GetOCRText.Text>
+                        <OutArgument x:TypeArguments="x:String">[strNADocCount]</OutArgument>
+                      </ui:GetOCRText.Text>
+                    </ui:GetOCRText>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+            </Sequence>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[strMissingDocCount+&quot; Document&quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,96" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[strReceivedDocCount+&quot; Document&quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,96" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[strNewDocCount+&quot; Document&quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,96" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[strNADocCount+&quot; Document&quot;]" />
+            <ui:ModifyText DisplayName="Modify Text" sap:VirtualizedContainerService.HintSize="450,54" sap2010:WorkflowViewState.IdRef="ModifyText_1" OutputText="[strMissingDocCount]" SourceText="[strMissingDocCount]">
+              <ui:ModifyText.Body>
+                <ActivityAction>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ucat:FindAndReplaceTextModification DisplayName="Find and replace text" sap:VirtualizedContainerService.HintSize="334,155.33333333333334" sap2010:WorkflowViewState.IdRef="FindAndReplaceTextModification_1" SearchText="?">
+                      <ucat:FindAndReplaceTextModification.ReplaceText>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </ucat:FindAndReplaceTextModification.ReplaceText>
+                    </ucat:FindAndReplaceTextModification>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ModifyText.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ModifyText>
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="450,192.66666666666666" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[out_intMissingDocCount]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[CInt(strMissingDocCount.Substring(0, strMissingDocCount.Length -8))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[out_intReceivedDocCount]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[CInt(strReceivedDocCount.Substring(0, strReceivedDocCount.Length -9))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[out_intNewDocCount]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[CInt(strNewDocCount.Substring(0, strNewDocCount.Length -4))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[out_intNADocCount]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[CInt(strNADocCount.Substring(0, strNADocCount.Length -4))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+            </ui:MultipleAssign>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="1432, -8, 1456, 876" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="58e9040e94ca3bdd6ce4c8df3c732ce1.jpg" Selector="&lt;html app='chrome.exe' title='Reviewer Dashboard' /&gt;" Title="Reviewer Dashboard" Url="[in_strURL_Dashboard]" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="546,96" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;____________________________________________________________________________________________________________________________________&quot;]" />
+  </Sequence>
+</Activity>

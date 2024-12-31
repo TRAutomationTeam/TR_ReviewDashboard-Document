@@ -1,0 +1,9 @@
+Reviewer Dashboard - Document
+
+Execution - SCAN PRO - Without prior year data
+Document of pre-req & execution flow (TC Club)
+
+Feedback from QA
+1. Foreground web application. - DONE
+2. Delete already existing notes before notes TC's execution.
+3. Indexing through file for page shortcut funtionality.
